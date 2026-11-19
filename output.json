@@ -1,0 +1,2172 @@
+{
+ "messages": [
+  {
+   "from": "Triage",
+   "to": "Orchestrator",
+   "text": "160 alerts -> 150 suppressed as benign, 10 kept, grouped into 5 incidents."
+  },
+  {
+   "from": "LogAnalyst",
+   "to": "Investigator",
+   "text": "INC-002 (pass 1): scanned 67 auth + 24 network rows -> 2 findings: ['bruteforce', 'lateral_movement']"
+  },
+  {
+   "from": "ThreatIntel",
+   "to": "Investigator",
+   "text": "INC-002: 1 external IPs checked, malicious: ['185.220.101.45']; MITRE: ['T1021', 'T1078', 'T1110']"
+  },
+  {
+   "from": "Investigator",
+   "to": "ResponseAgent",
+   "text": "INC-002: TRUE_POSITIVE (confidence 0.98, risk 125). Evidence: ['40 failed logins from 185.220.101.45, then SUCCESS from DE', 'login to SRV-FILE01 from workstation 10.0.0.12', 'destination/source IP is in threat-intel feed']"
+  },
+  {
+   "from": "ResponseAgent",
+   "to": "Reporter",
+   "text": "INC-002: priority P1, 5 actions (1 need human approval)."
+  },
+  {
+   "from": "LogAnalyst",
+   "to": "Investigator",
+   "text": "INC-004 (pass 1): scanned 22 auth + 6 network rows -> 1 findings: ['exfiltration']"
+  },
+  {
+   "from": "ThreatIntel",
+   "to": "Investigator",
+   "text": "INC-004: 1 external IPs checked, malicious: ['91.240.118.172']; MITRE: ['T1005', 'T1048']"
+  },
+  {
+   "from": "Investigator",
+   "to": "ResponseAgent",
+   "text": "INC-004: TRUE_POSITIVE (confidence 0.95, risk 100). Evidence: ['3217 MB sent to 91.240.118.172', 'destination/source IP is in threat-intel feed']"
+  },
+  {
+   "from": "ResponseAgent",
+   "to": "Reporter",
+   "text": "INC-004: priority P1, 3 actions (2 need human approval)."
+  },
+  {
+   "from": "LogAnalyst",
+   "to": "Investigator",
+   "text": "INC-003 (pass 1): scanned 32 auth + 60 network rows -> 1 findings: ['beaconing']"
+  },
+  {
+   "from": "ThreatIntel",
+   "to": "Investigator",
+   "text": "INC-003: 1 external IPs checked, malicious: ['45.155.205.233']; MITRE: ['T1059.001', 'T1071', 'T1566.001']"
+  },
+  {
+   "from": "Investigator",
+   "to": "ResponseAgent",
+   "text": "INC-003: TRUE_POSITIVE (confidence 0.87, risk 80). Evidence: ['beaconing to 45.155.205.233 every ~300s (30x)', 'destination/source IP is in threat-intel feed']"
+  },
+  {
+   "from": "ResponseAgent",
+   "to": "Reporter",
+   "text": "INC-003: priority P2, 3 actions (1 need human approval)."
+  },
+  {
+   "from": "LogAnalyst",
+   "to": "Investigator",
+   "text": "INC-001 (pass 1): scanned 45 auth + 75 network rows -> 0 findings: none"
+  },
+  {
+   "from": "ThreatIntel",
+   "to": "Investigator",
+   "text": "INC-001: 1 external IPs checked, malicious: none; MITRE: ['T1078']"
+  },
+  {
+   "from": "Investigator",
+   "to": "ResponseAgent",
+   "text": "INC-001: FALSE_POSITIVE (confidence 0.85, risk 0). Evidence: ['hina on approved travel, no malicious indicators']"
+  },
+  {
+   "from": "ResponseAgent",
+   "to": "Reporter",
+   "text": "INC-001: priority P4, 1 actions (0 need human approval)."
+  },
+  {
+   "from": "LogAnalyst",
+   "to": "Investigator",
+   "text": "INC-005 (pass 1): scanned 26 auth + 26 network rows -> 0 findings: none"
+  },
+  {
+   "from": "ThreatIntel",
+   "to": "Investigator",
+   "text": "INC-005: 0 external IPs checked, malicious: none; MITRE: ['T1486']"
+  },
+  {
+   "from": "Investigator",
+   "to": "LogAnalyst",
+   "text": "INC-005: high severity but no corroborating logs. Widening search by host IP / related entities."
+  },
+  {
+   "from": "LogAnalyst",
+   "to": "Investigator",
+   "text": "INC-005 (pass 2): scanned 26 auth + 26 network rows -> 0 findings: none"
+  },
+  {
+   "from": "ThreatIntel",
+   "to": "Investigator",
+   "text": "INC-005: 0 external IPs checked, malicious: none; MITRE: ['T1486']"
+  },
+  {
+   "from": "Investigator",
+   "to": "ResponseAgent",
+   "text": "INC-005: NEEDS_MORE_INFO (confidence 0.4, risk 15). Evidence: insufficient"
+  },
+  {
+   "from": "ResponseAgent",
+   "to": "Reporter",
+   "text": "INC-005: priority P1, 3 actions (1 need human approval)."
+  }
+ ],
+ "incidents": [
+  {
+   "id": "INC-002",
+   "entity": "bilal",
+   "alerts": [
+    {
+     "alert_id": "A0057",
+     "time": "2026-11-18 11:21:00",
+     "rule": "Multiple Failed Logins",
+     "severity": "high",
+     "user": "bilal",
+     "host": "",
+     "src_ip": "185.220.101.45",
+     "description": "40 failed logins in 8 minutes"
+    },
+    {
+     "alert_id": "A0061",
+     "time": "2026-11-18 11:29:00",
+     "rule": "Login From New Country",
+     "severity": "high",
+     "user": "bilal",
+     "host": "",
+     "src_ip": "185.220.101.45",
+     "description": "Successful login from DE"
+    },
+    {
+     "alert_id": "A0064",
+     "time": "2026-11-18 11:34:00",
+     "rule": "Lateral Movement Suspected",
+     "severity": "critical",
+     "user": "bilal",
+     "host": "SRV-FILE01",
+     "src_ip": "10.0.0.12",
+     "description": "Workstation to file server login"
+    }
+   ],
+   "triage_score": 49,
+   "log_rows": {
+    "auth": 67,
+    "network": 24
+   },
+   "findings": [
+    {
+     "type": "bruteforce",
+     "ip": "185.220.101.45",
+     "failed": 40,
+     "followed_by_success": true,
+     "success_geo": "DE"
+    },
+    {
+     "type": "lateral_movement",
+     "host": "SRV-FILE01",
+     "from": "10.0.0.12",
+     "time": "2026-11-18 11:34:00"
+    }
+   ],
+   "intel": [
+    {
+     "ip": "185.220.101.45",
+     "reputation": "malicious",
+     "tags": "tor-exit,bruteforce",
+     "source": "local-feed"
+    }
+   ],
+   "mitre": [
+    [
+     "T1021",
+     "Remote Services"
+    ],
+    [
+     "T1078",
+     "Valid Accounts"
+    ],
+    [
+     "T1110",
+     "Brute Force"
+    ]
+   ],
+   "evidence": [
+    "40 failed logins from 185.220.101.45, then SUCCESS from DE",
+    "login to SRV-FILE01 from workstation 10.0.0.12",
+    "destination/source IP is in threat-intel feed"
+   ],
+   "benign_evidence": [],
+   "risk_score": 125,
+   "verdict": "TRUE_POSITIVE",
+   "confidence": 0.98,
+   "retry": false,
+   "priority": "P1",
+   "actions": [
+    {
+     "action": "Force password reset + revoke active sessions for bilal",
+     "requires_approval": false
+    },
+    {
+     "action": "Block IP 185.220.101.45 at firewall",
+     "requires_approval": false
+    },
+    {
+     "action": "Enforce MFA on account bilal",
+     "requires_approval": false
+    },
+    {
+     "action": "Isolate workstation of bilal from network (EDR)",
+     "requires_approval": true
+    },
+    {
+     "action": "Audit file-server access logs for bilal",
+     "requires_approval": false
+    }
+   ],
+   "report": "## INC-002 \u2014 bilal \u2014 TRUE_POSITIVE (P1)\nConfidence: 0.98 | Risk score: 125 | Alerts: 3\nMITRE ATT&CK: T1021 Remote Services, T1078 Valid Accounts, T1110 Brute Force\nEvidence: 40 failed logins from 185.220.101.45, then SUCCESS from DE; login to SRV-FILE01 from workstation 10.0.0.12; destination/source IP is in threat-intel feed\nRecommended actions:\n- Force password reset + revoke active sessions for bilal\n- Block IP 185.220.101.45 at firewall\n- Enforce MFA on account bilal\n- Isolate workstation of bilal from network (EDR)  **[needs human approval]**\n- Audit file-server access logs for bilal"
+  },
+  {
+   "id": "INC-004",
+   "entity": "dev_ahmed",
+   "alerts": [
+    {
+     "alert_id": "A0117",
+     "time": "2026-11-18 14:45:00",
+     "rule": "Large Outbound Transfer",
+     "severity": "critical",
+     "user": "dev_ahmed",
+     "host": "SRV-DB01",
+     "src_ip": "10.0.0.20",
+     "description": "2.8 GB sent to external IP"
+    },
+    {
+     "alert_id": "A0118",
+     "time": "2026-11-18 14:46:00",
+     "rule": "Unusual DB Export",
+     "severity": "high",
+     "user": "dev_ahmed",
+     "host": "SRV-DB01",
+     "src_ip": "",
+     "description": "Full table dump executed"
+    }
+   ],
+   "triage_score": 46,
+   "log_rows": {
+    "auth": 22,
+    "network": 6
+   },
+   "findings": [
+    {
+     "type": "exfiltration",
+     "dst_ip": "91.240.118.172",
+     "mb": 3217
+    }
+   ],
+   "intel": [
+    {
+     "ip": "91.240.118.172",
+     "reputation": "malicious",
+     "tags": "phishing-host",
+     "source": "local-feed"
+    }
+   ],
+   "mitre": [
+    [
+     "T1005",
+     "Data from Local System"
+    ],
+    [
+     "T1048",
+     "Exfiltration Over Alt Protocol"
+    ]
+   ],
+   "evidence": [
+    "3217 MB sent to 91.240.118.172",
+    "destination/source IP is in threat-intel feed"
+   ],
+   "benign_evidence": [],
+   "risk_score": 100,
+   "verdict": "TRUE_POSITIVE",
+   "confidence": 0.95,
+   "retry": false,
+   "priority": "P1",
+   "actions": [
+    {
+     "action": "Block outbound traffic to destination IP immediately",
+     "requires_approval": false
+    },
+    {
+     "action": "Suspend DB account of dev_ahmed",
+     "requires_approval": true
+    },
+    {
+     "action": "Start data-breach assessment / notify DPO and legal",
+     "requires_approval": true
+    }
+   ],
+   "report": "## INC-004 \u2014 dev_ahmed \u2014 TRUE_POSITIVE (P1)\nConfidence: 0.95 | Risk score: 100 | Alerts: 2\nMITRE ATT&CK: T1005 Data from Local System, T1048 Exfiltration Over Alt Protocol\nEvidence: 3217 MB sent to 91.240.118.172; destination/source IP is in threat-intel feed\nRecommended actions:\n- Block outbound traffic to destination IP immediately\n- Suspend DB account of dev_ahmed  **[needs human approval]**\n- Start data-breach assessment / notify DPO and legal  **[needs human approval]**"
+  },
+  {
+   "id": "INC-003",
+   "entity": "zara",
+   "alerts": [
+    {
+     "alert_id": "A0086",
+     "time": "2026-11-18 13:00:00",
+     "rule": "Suspicious Email Attachment",
+     "severity": "medium",
+     "user": "zara",
+     "host": "WS-006",
+     "src_ip": "",
+     "description": "Macro-enabled .docm opened"
+    },
+    {
+     "alert_id": "A0089",
+     "time": "2026-11-18 13:03:00",
+     "rule": "PowerShell Encoded Command",
+     "severity": "high",
+     "user": "zara",
+     "host": "WS-006",
+     "src_ip": "10.0.0.15",
+     "description": "powershell -enc ... spawned by WINWORD.EXE"
+    },
+    {
+     "alert_id": "A0095",
+     "time": "2026-11-18 13:20:00",
+     "rule": "Beaconing Detected",
+     "severity": "high",
+     "user": "",
+     "host": "WS-006",
+     "src_ip": "10.0.0.15",
+     "description": "Periodic 5-min connections to 45.155.205.233"
+    }
+   ],
+   "triage_score": 39,
+   "log_rows": {
+    "auth": 32,
+    "network": 60
+   },
+   "findings": [
+    {
+     "type": "beaconing",
+     "dst_ip": "45.155.205.233",
+     "count": 30,
+     "interval_s": 300
+    }
+   ],
+   "intel": [
+    {
+     "ip": "45.155.205.233",
+     "reputation": "malicious",
+     "tags": "c2-server",
+     "source": "local-feed"
+    }
+   ],
+   "mitre": [
+    [
+     "T1059.001",
+     "PowerShell"
+    ],
+    [
+     "T1071",
+     "C2 over App Layer Protocol"
+    ],
+    [
+     "T1566.001",
+     "Spearphishing Attachment"
+    ]
+   ],
+   "evidence": [
+    "beaconing to 45.155.205.233 every ~300s (30x)",
+    "destination/source IP is in threat-intel feed"
+   ],
+   "benign_evidence": [],
+   "risk_score": 80,
+   "verdict": "TRUE_POSITIVE",
+   "confidence": 0.87,
+   "retry": false,
+   "priority": "P2",
+   "actions": [
+    {
+     "action": "Isolate host (EDR network containment)",
+     "requires_approval": true
+    },
+    {
+     "action": "Block C2 IP at firewall/DNS",
+     "requires_approval": false
+    },
+    {
+     "action": "Collect memory + disk image for forensics",
+     "requires_approval": false
+    }
+   ],
+   "report": "## INC-003 \u2014 zara \u2014 TRUE_POSITIVE (P2)\nConfidence: 0.87 | Risk score: 80 | Alerts: 3\nMITRE ATT&CK: T1059.001 PowerShell, T1071 C2 over App Layer Protocol, T1566.001 Spearphishing Attachment\nEvidence: beaconing to 45.155.205.233 every ~300s (30x); destination/source IP is in threat-intel feed\nRecommended actions:\n- Isolate host (EDR network containment)  **[needs human approval]**\n- Block C2 IP at firewall/DNS\n- Collect memory + disk image for forensics"
+  },
+  {
+   "id": "INC-001",
+   "entity": "hina",
+   "alerts": [
+    {
+     "alert_id": "A0029",
+     "time": "2026-11-18 09:40:00",
+     "rule": "Login From New Country",
+     "severity": "high",
+     "user": "hina",
+     "host": "",
+     "src_ip": "20.190.159.4",
+     "description": "Login from AE, MFA passed, user on approved travel"
+    }
+   ],
+   "triage_score": 33,
+   "log_rows": {
+    "auth": 45,
+    "network": 75
+   },
+   "findings": [],
+   "intel": [
+    {
+     "ip": "20.190.159.4",
+     "reputation": "unknown",
+     "tags": "",
+     "source": "none"
+    }
+   ],
+   "mitre": [
+    [
+     "T1078",
+     "Valid Accounts"
+    ]
+   ],
+   "evidence": [],
+   "benign_evidence": [
+    "hina on approved travel, no malicious indicators"
+   ],
+   "risk_score": 0,
+   "verdict": "FALSE_POSITIVE",
+   "confidence": 0.85,
+   "retry": false,
+   "priority": "P4",
+   "actions": [
+    {
+     "action": "Close alerts as false positive; add tuning rule to reduce future noise",
+     "requires_approval": false
+    }
+   ],
+   "report": "## INC-001 \u2014 hina \u2014 FALSE_POSITIVE (P4)\nConfidence: 0.85 | Risk score: 0 | Alerts: 1\nMITRE ATT&CK: T1078 Valid Accounts\nEvidence: none\nBenign indicators: hina on approved travel, no malicious indicators\nRecommended actions:\n- Close alerts as false positive; add tuning rule to reduce future noise"
+  },
+  {
+   "id": "INC-005",
+   "entity": "omar",
+   "alerts": [
+    {
+     "alert_id": "A0146",
+     "time": "2026-11-18 16:20:00",
+     "rule": "Ransomware Behaviour",
+     "severity": "high",
+     "user": "",
+     "host": "WS-007",
+     "src_ip": "10.0.0.16",
+     "description": "Mass file rename .locked (EDR telemetry only, logs missing)"
+    }
+   ],
+   "triage_score": 33,
+   "log_rows": {
+    "auth": 26,
+    "network": 26
+   },
+   "findings": [],
+   "intel": [],
+   "mitre": [
+    [
+     "T1486",
+     "Data Encrypted for Impact"
+    ]
+   ],
+   "evidence": [],
+   "benign_evidence": [],
+   "risk_score": 15,
+   "verdict": "NEEDS_MORE_INFO",
+   "confidence": 0.4,
+   "widen": 1,
+   "retry": false,
+   "limitations": "Logs unavailable for this host (EDR-only telemetry). Verdict is provisional; treated as suspected incident by policy.",
+   "priority": "P1",
+   "actions": [
+    {
+     "action": "Isolate host via EDR as precaution (ransomware indicators)",
+     "requires_approval": true
+    },
+    {
+     "action": "Collect EDR triage package + request missing logs from IT",
+     "requires_approval": false
+    },
+    {
+     "action": "Escalate to Tier-2 analyst for manual review",
+     "requires_approval": false
+    }
+   ],
+   "report": "## INC-005 \u2014 omar \u2014 NEEDS_MORE_INFO (P1)\nConfidence: 0.4 | Risk score: 15 | Alerts: 1\nMITRE ATT&CK: T1486 Data Encrypted for Impact\nEvidence: none\nLimitations: Logs unavailable for this host (EDR-only telemetry). Verdict is provisional; treated as suspected incident by policy.\nRecommended actions:\n- Isolate host via EDR as precaution (ransomware indicators)  **[needs human approval]**\n- Collect EDR triage package + request missing logs from IT\n- Escalate to Tier-2 analyst for manual review"
+  }
+ ],
+ "suppressed": [
+  {
+   "alert_id": "A0001",
+   "time": "2026-11-18 08:02:00",
+   "rule": "Port Scan Detected",
+   "severity": "medium",
+   "user": "",
+   "host": "SRV-WEB01",
+   "src_ip": "10.0.0.5",
+   "description": "Scan from internal vuln-scanner Nessus (10.0.0.5)",
+   "why": "known internal vulnerability scanner"
+  },
+  {
+   "alert_id": "A0002",
+   "time": "2026-11-18 08:03:00",
+   "rule": "Unusual Geo Login",
+   "severity": "low",
+   "user": "admin",
+   "host": "",
+   "src_ip": "20.190.159.4",
+   "description": "Microsoft 365 sign-in",
+   "why": "Microsoft 365 sign-in"
+  },
+  {
+   "alert_id": "A0003",
+   "time": "2026-11-18 08:06:00",
+   "rule": "Port Scan Detected",
+   "severity": "medium",
+   "user": "",
+   "host": "SRV-WEB01",
+   "src_ip": "10.0.0.5",
+   "description": "Scan from internal vuln-scanner Nessus (10.0.0.5)",
+   "why": "known internal vulnerability scanner"
+  },
+  {
+   "alert_id": "A0004",
+   "time": "2026-11-18 08:11:00",
+   "rule": "Admin Login Off-Hours",
+   "severity": "medium",
+   "user": "admin",
+   "host": "SRV-FILE01",
+   "src_ip": "10.0.0.8",
+   "description": "Admin login via corporate VPN",
+   "why": "admin via corporate VPN"
+  },
+  {
+   "alert_id": "A0005",
+   "time": "2026-11-18 08:15:00",
+   "rule": "Port Scan Detected",
+   "severity": "medium",
+   "user": "",
+   "host": "SRV-WEB01",
+   "src_ip": "10.0.0.5",
+   "description": "Scan from internal vuln-scanner Nessus (10.0.0.5)",
+   "why": "known internal vulnerability scanner"
+  },
+  {
+   "alert_id": "A0006",
+   "time": "2026-11-18 08:18:00",
+   "rule": "Admin Login Off-Hours",
+   "severity": "medium",
+   "user": "admin",
+   "host": "SRV-FILE01",
+   "src_ip": "10.0.0.8",
+   "description": "Admin login via corporate VPN",
+   "why": "admin via corporate VPN"
+  },
+  {
+   "alert_id": "A0007",
+   "time": "2026-11-18 08:31:00",
+   "rule": "Large Outbound Transfer",
+   "severity": "medium",
+   "user": "",
+   "host": "WS-003",
+   "src_ip": "10.0.0.12",
+   "description": "Windows update download pattern",
+   "why": "benign update traffic"
+  },
+  {
+   "alert_id": "A0008",
+   "time": "2026-11-18 08:34:00",
+   "rule": "Admin Login Off-Hours",
+   "severity": "medium",
+   "user": "admin",
+   "host": "SRV-FILE01",
+   "src_ip": "10.0.0.8",
+   "description": "Admin login via corporate VPN",
+   "why": "admin via corporate VPN"
+  },
+  {
+   "alert_id": "A0009",
+   "time": "2026-11-18 08:35:00",
+   "rule": "Large Outbound Transfer",
+   "severity": "medium",
+   "user": "",
+   "host": "WS-003",
+   "src_ip": "10.0.0.12",
+   "description": "Windows update download pattern",
+   "why": "benign update traffic"
+  },
+  {
+   "alert_id": "A0010",
+   "time": "2026-11-18 08:39:00",
+   "rule": "Unusual Geo Login",
+   "severity": "low",
+   "user": "hina",
+   "host": "",
+   "src_ip": "20.190.159.4",
+   "description": "Microsoft 365 sign-in",
+   "why": "Microsoft 365 sign-in"
+  },
+  {
+   "alert_id": "A0011",
+   "time": "2026-11-18 08:41:00",
+   "rule": "Large Outbound Transfer",
+   "severity": "medium",
+   "user": "",
+   "host": "WS-003",
+   "src_ip": "10.0.0.12",
+   "description": "Windows update download pattern",
+   "why": "benign update traffic"
+  },
+  {
+   "alert_id": "A0012",
+   "time": "2026-11-18 08:42:00",
+   "rule": "Large Outbound Transfer",
+   "severity": "medium",
+   "user": "",
+   "host": "WS-003",
+   "src_ip": "10.0.0.12",
+   "description": "Windows update download pattern",
+   "why": "benign update traffic"
+  },
+  {
+   "alert_id": "A0013",
+   "time": "2026-11-18 08:42:00",
+   "rule": "Unusual Geo Login",
+   "severity": "low",
+   "user": "ali",
+   "host": "",
+   "src_ip": "20.190.159.4",
+   "description": "Microsoft 365 sign-in",
+   "why": "Microsoft 365 sign-in"
+  },
+  {
+   "alert_id": "A0014",
+   "time": "2026-11-18 08:44:00",
+   "rule": "Admin Login Off-Hours",
+   "severity": "medium",
+   "user": "admin",
+   "host": "SRV-FILE01",
+   "src_ip": "10.0.0.8",
+   "description": "Admin login via corporate VPN",
+   "why": "admin via corporate VPN"
+  },
+  {
+   "alert_id": "A0015",
+   "time": "2026-11-18 08:51:00",
+   "rule": "Failed Login",
+   "severity": "low",
+   "user": "dev_ahmed",
+   "host": "",
+   "src_ip": "",
+   "description": "1 failed login (typo)",
+   "why": "isolated failed login"
+  },
+  {
+   "alert_id": "A0016",
+   "time": "2026-11-18 08:53:00",
+   "rule": "Port Scan Detected",
+   "severity": "medium",
+   "user": "",
+   "host": "SRV-WEB01",
+   "src_ip": "10.0.0.5",
+   "description": "Scan from internal vuln-scanner Nessus (10.0.0.5)",
+   "why": "known internal vulnerability scanner"
+  },
+  {
+   "alert_id": "A0017",
+   "time": "2026-11-18 08:54:00",
+   "rule": "Unusual Geo Login",
+   "severity": "low",
+   "user": "omar",
+   "host": "",
+   "src_ip": "20.190.159.4",
+   "description": "Microsoft 365 sign-in",
+   "why": "Microsoft 365 sign-in"
+  },
+  {
+   "alert_id": "A0018",
+   "time": "2026-11-18 08:55:00",
+   "rule": "Failed Login",
+   "severity": "low",
+   "user": "ali",
+   "host": "",
+   "src_ip": "",
+   "description": "1 failed login (typo)",
+   "why": "isolated failed login"
+  },
+  {
+   "alert_id": "A0019",
+   "time": "2026-11-18 09:04:00",
+   "rule": "Large Outbound Transfer",
+   "severity": "medium",
+   "user": "",
+   "host": "WS-003",
+   "src_ip": "10.0.0.12",
+   "description": "Windows update download pattern",
+   "why": "benign update traffic"
+  },
+  {
+   "alert_id": "A0020",
+   "time": "2026-11-18 09:04:00",
+   "rule": "Port Scan Detected",
+   "severity": "medium",
+   "user": "",
+   "host": "SRV-WEB01",
+   "src_ip": "10.0.0.5",
+   "description": "Scan from internal vuln-scanner Nessus (10.0.0.5)",
+   "why": "known internal vulnerability scanner"
+  },
+  {
+   "alert_id": "A0021",
+   "time": "2026-11-18 09:06:00",
+   "rule": "Port Scan Detected",
+   "severity": "medium",
+   "user": "",
+   "host": "SRV-WEB01",
+   "src_ip": "10.0.0.5",
+   "description": "Scan from internal vuln-scanner Nessus (10.0.0.5)",
+   "why": "known internal vulnerability scanner"
+  },
+  {
+   "alert_id": "A0022",
+   "time": "2026-11-18 09:06:00",
+   "rule": "Large Outbound Transfer",
+   "severity": "medium",
+   "user": "",
+   "host": "WS-003",
+   "src_ip": "10.0.0.12",
+   "description": "Windows update download pattern",
+   "why": "benign update traffic"
+  },
+  {
+   "alert_id": "A0023",
+   "time": "2026-11-18 09:06:00",
+   "rule": "Port Scan Detected",
+   "severity": "medium",
+   "user": "",
+   "host": "SRV-WEB01",
+   "src_ip": "10.0.0.5",
+   "description": "Scan from internal vuln-scanner Nessus (10.0.0.5)",
+   "why": "known internal vulnerability scanner"
+  },
+  {
+   "alert_id": "A0024",
+   "time": "2026-11-18 09:19:00",
+   "rule": "Failed Login",
+   "severity": "low",
+   "user": "ali",
+   "host": "",
+   "src_ip": "",
+   "description": "1 failed login (typo)",
+   "why": "isolated failed login"
+  },
+  {
+   "alert_id": "A0025",
+   "time": "2026-11-18 09:28:00",
+   "rule": "Unusual Geo Login",
+   "severity": "low",
+   "user": "bilal",
+   "host": "",
+   "src_ip": "20.190.159.4",
+   "description": "Microsoft 365 sign-in",
+   "why": "Microsoft 365 sign-in"
+  },
+  {
+   "alert_id": "A0026",
+   "time": "2026-11-18 09:29:00",
+   "rule": "Port Scan Detected",
+   "severity": "medium",
+   "user": "",
+   "host": "SRV-WEB01",
+   "src_ip": "10.0.0.5",
+   "description": "Scan from internal vuln-scanner Nessus (10.0.0.5)",
+   "why": "known internal vulnerability scanner"
+  },
+  {
+   "alert_id": "A0027",
+   "time": "2026-11-18 09:31:00",
+   "rule": "Unusual Geo Login",
+   "severity": "low",
+   "user": "dev_ahmed",
+   "host": "",
+   "src_ip": "20.190.159.4",
+   "description": "Microsoft 365 sign-in",
+   "why": "Microsoft 365 sign-in"
+  },
+  {
+   "alert_id": "A0028",
+   "time": "2026-11-18 09:33:00",
+   "rule": "Failed Login",
+   "severity": "low",
+   "user": "omar",
+   "host": "",
+   "src_ip": "",
+   "description": "1 failed login (typo)",
+   "why": "isolated failed login"
+  },
+  {
+   "alert_id": "A0030",
+   "time": "2026-11-18 09:43:00",
+   "rule": "Large Outbound Transfer",
+   "severity": "medium",
+   "user": "",
+   "host": "WS-003",
+   "src_ip": "10.0.0.12",
+   "description": "Windows update download pattern",
+   "why": "benign update traffic"
+  },
+  {
+   "alert_id": "A0031",
+   "time": "2026-11-18 09:44:00",
+   "rule": "Port Scan Detected",
+   "severity": "medium",
+   "user": "",
+   "host": "SRV-WEB01",
+   "src_ip": "10.0.0.5",
+   "description": "Scan from internal vuln-scanner Nessus (10.0.0.5)",
+   "why": "known internal vulnerability scanner"
+  },
+  {
+   "alert_id": "A0032",
+   "time": "2026-11-18 09:47:00",
+   "rule": "Port Scan Detected",
+   "severity": "medium",
+   "user": "",
+   "host": "SRV-WEB01",
+   "src_ip": "10.0.0.5",
+   "description": "Scan from internal vuln-scanner Nessus (10.0.0.5)",
+   "why": "known internal vulnerability scanner"
+  },
+  {
+   "alert_id": "A0033",
+   "time": "2026-11-18 09:51:00",
+   "rule": "Large Outbound Transfer",
+   "severity": "medium",
+   "user": "",
+   "host": "WS-003",
+   "src_ip": "10.0.0.12",
+   "description": "Windows update download pattern",
+   "why": "benign update traffic"
+  },
+  {
+   "alert_id": "A0034",
+   "time": "2026-11-18 09:55:00",
+   "rule": "Port Scan Detected",
+   "severity": "medium",
+   "user": "",
+   "host": "SRV-WEB01",
+   "src_ip": "10.0.0.5",
+   "description": "Scan from internal vuln-scanner Nessus (10.0.0.5)",
+   "why": "known internal vulnerability scanner"
+  },
+  {
+   "alert_id": "A0035",
+   "time": "2026-11-18 09:56:00",
+   "rule": "Port Scan Detected",
+   "severity": "medium",
+   "user": "",
+   "host": "SRV-WEB01",
+   "src_ip": "10.0.0.5",
+   "description": "Scan from internal vuln-scanner Nessus (10.0.0.5)",
+   "why": "known internal vulnerability scanner"
+  },
+  {
+   "alert_id": "A0036",
+   "time": "2026-11-18 10:06:00",
+   "rule": "Unusual Geo Login",
+   "severity": "low",
+   "user": "hina",
+   "host": "",
+   "src_ip": "20.190.159.4",
+   "description": "Microsoft 365 sign-in",
+   "why": "Microsoft 365 sign-in"
+  },
+  {
+   "alert_id": "A0037",
+   "time": "2026-11-18 10:09:00",
+   "rule": "Port Scan Detected",
+   "severity": "medium",
+   "user": "",
+   "host": "SRV-WEB01",
+   "src_ip": "10.0.0.5",
+   "description": "Scan from internal vuln-scanner Nessus (10.0.0.5)",
+   "why": "known internal vulnerability scanner"
+  },
+  {
+   "alert_id": "A0038",
+   "time": "2026-11-18 10:15:00",
+   "rule": "Large Outbound Transfer",
+   "severity": "medium",
+   "user": "",
+   "host": "WS-003",
+   "src_ip": "10.0.0.12",
+   "description": "Windows update download pattern",
+   "why": "benign update traffic"
+  },
+  {
+   "alert_id": "A0039",
+   "time": "2026-11-18 10:16:00",
+   "rule": "Large Outbound Transfer",
+   "severity": "medium",
+   "user": "",
+   "host": "WS-003",
+   "src_ip": "10.0.0.12",
+   "description": "Windows update download pattern",
+   "why": "benign update traffic"
+  },
+  {
+   "alert_id": "A0040",
+   "time": "2026-11-18 10:24:00",
+   "rule": "Port Scan Detected",
+   "severity": "medium",
+   "user": "",
+   "host": "SRV-WEB01",
+   "src_ip": "10.0.0.5",
+   "description": "Scan from internal vuln-scanner Nessus (10.0.0.5)",
+   "why": "known internal vulnerability scanner"
+  },
+  {
+   "alert_id": "A0041",
+   "time": "2026-11-18 10:25:00",
+   "rule": "Large Outbound Transfer",
+   "severity": "medium",
+   "user": "",
+   "host": "WS-003",
+   "src_ip": "10.0.0.12",
+   "description": "Windows update download pattern",
+   "why": "benign update traffic"
+  },
+  {
+   "alert_id": "A0042",
+   "time": "2026-11-18 10:29:00",
+   "rule": "Large Outbound Transfer",
+   "severity": "medium",
+   "user": "",
+   "host": "WS-003",
+   "src_ip": "10.0.0.12",
+   "description": "Windows update download pattern",
+   "why": "benign update traffic"
+  },
+  {
+   "alert_id": "A0043",
+   "time": "2026-11-18 10:29:00",
+   "rule": "Admin Login Off-Hours",
+   "severity": "medium",
+   "user": "admin",
+   "host": "SRV-FILE01",
+   "src_ip": "10.0.0.8",
+   "description": "Admin login via corporate VPN",
+   "why": "admin via corporate VPN"
+  },
+  {
+   "alert_id": "A0044",
+   "time": "2026-11-18 10:33:00",
+   "rule": "Failed Login",
+   "severity": "low",
+   "user": "hina",
+   "host": "",
+   "src_ip": "",
+   "description": "1 failed login (typo)",
+   "why": "isolated failed login"
+  },
+  {
+   "alert_id": "A0045",
+   "time": "2026-11-18 10:43:00",
+   "rule": "Failed Login",
+   "severity": "low",
+   "user": "omar",
+   "host": "",
+   "src_ip": "",
+   "description": "1 failed login (typo)",
+   "why": "isolated failed login"
+  },
+  {
+   "alert_id": "A0046",
+   "time": "2026-11-18 10:49:00",
+   "rule": "Admin Login Off-Hours",
+   "severity": "medium",
+   "user": "admin",
+   "host": "SRV-FILE01",
+   "src_ip": "10.0.0.8",
+   "description": "Admin login via corporate VPN",
+   "why": "admin via corporate VPN"
+  },
+  {
+   "alert_id": "A0047",
+   "time": "2026-11-18 10:55:00",
+   "rule": "Port Scan Detected",
+   "severity": "medium",
+   "user": "",
+   "host": "SRV-WEB01",
+   "src_ip": "10.0.0.5",
+   "description": "Scan from internal vuln-scanner Nessus (10.0.0.5)",
+   "why": "known internal vulnerability scanner"
+  },
+  {
+   "alert_id": "A0048",
+   "time": "2026-11-18 11:03:00",
+   "rule": "Port Scan Detected",
+   "severity": "medium",
+   "user": "",
+   "host": "SRV-WEB01",
+   "src_ip": "10.0.0.5",
+   "description": "Scan from internal vuln-scanner Nessus (10.0.0.5)",
+   "why": "known internal vulnerability scanner"
+  },
+  {
+   "alert_id": "A0049",
+   "time": "2026-11-18 11:07:00",
+   "rule": "Port Scan Detected",
+   "severity": "medium",
+   "user": "",
+   "host": "SRV-WEB01",
+   "src_ip": "10.0.0.5",
+   "description": "Scan from internal vuln-scanner Nessus (10.0.0.5)",
+   "why": "known internal vulnerability scanner"
+  },
+  {
+   "alert_id": "A0050",
+   "time": "2026-11-18 11:07:00",
+   "rule": "Unusual Geo Login",
+   "severity": "low",
+   "user": "hina",
+   "host": "",
+   "src_ip": "20.190.159.4",
+   "description": "Microsoft 365 sign-in",
+   "why": "Microsoft 365 sign-in"
+  },
+  {
+   "alert_id": "A0051",
+   "time": "2026-11-18 11:08:00",
+   "rule": "Large Outbound Transfer",
+   "severity": "medium",
+   "user": "",
+   "host": "WS-003",
+   "src_ip": "10.0.0.12",
+   "description": "Windows update download pattern",
+   "why": "benign update traffic"
+  },
+  {
+   "alert_id": "A0052",
+   "time": "2026-11-18 11:09:00",
+   "rule": "Unusual Geo Login",
+   "severity": "low",
+   "user": "usman",
+   "host": "",
+   "src_ip": "20.190.159.4",
+   "description": "Microsoft 365 sign-in",
+   "why": "Microsoft 365 sign-in"
+  },
+  {
+   "alert_id": "A0053",
+   "time": "2026-11-18 11:15:00",
+   "rule": "Failed Login",
+   "severity": "low",
+   "user": "svc_backup",
+   "host": "",
+   "src_ip": "",
+   "description": "1 failed login (typo)",
+   "why": "isolated failed login"
+  },
+  {
+   "alert_id": "A0054",
+   "time": "2026-11-18 11:17:00",
+   "rule": "Admin Login Off-Hours",
+   "severity": "medium",
+   "user": "admin",
+   "host": "SRV-FILE01",
+   "src_ip": "10.0.0.8",
+   "description": "Admin login via corporate VPN",
+   "why": "admin via corporate VPN"
+  },
+  {
+   "alert_id": "A0055",
+   "time": "2026-11-18 11:18:00",
+   "rule": "Failed Login",
+   "severity": "low",
+   "user": "admin",
+   "host": "",
+   "src_ip": "",
+   "description": "1 failed login (typo)",
+   "why": "isolated failed login"
+  },
+  {
+   "alert_id": "A0056",
+   "time": "2026-11-18 11:20:00",
+   "rule": "Large Outbound Transfer",
+   "severity": "medium",
+   "user": "",
+   "host": "WS-003",
+   "src_ip": "10.0.0.12",
+   "description": "Windows update download pattern",
+   "why": "benign update traffic"
+  },
+  {
+   "alert_id": "A0058",
+   "time": "2026-11-18 11:21:00",
+   "rule": "Large Outbound Transfer",
+   "severity": "medium",
+   "user": "",
+   "host": "WS-003",
+   "src_ip": "10.0.0.12",
+   "description": "Windows update download pattern",
+   "why": "benign update traffic"
+  },
+  {
+   "alert_id": "A0059",
+   "time": "2026-11-18 11:25:00",
+   "rule": "Admin Login Off-Hours",
+   "severity": "medium",
+   "user": "admin",
+   "host": "SRV-FILE01",
+   "src_ip": "10.0.0.8",
+   "description": "Admin login via corporate VPN",
+   "why": "admin via corporate VPN"
+  },
+  {
+   "alert_id": "A0060",
+   "time": "2026-11-18 11:28:00",
+   "rule": "Admin Login Off-Hours",
+   "severity": "medium",
+   "user": "admin",
+   "host": "SRV-FILE01",
+   "src_ip": "10.0.0.8",
+   "description": "Admin login via corporate VPN",
+   "why": "admin via corporate VPN"
+  },
+  {
+   "alert_id": "A0062",
+   "time": "2026-11-18 11:30:00",
+   "rule": "Large Outbound Transfer",
+   "severity": "medium",
+   "user": "",
+   "host": "WS-003",
+   "src_ip": "10.0.0.12",
+   "description": "Windows update download pattern",
+   "why": "benign update traffic"
+  },
+  {
+   "alert_id": "A0063",
+   "time": "2026-11-18 11:33:00",
+   "rule": "Port Scan Detected",
+   "severity": "medium",
+   "user": "",
+   "host": "SRV-WEB01",
+   "src_ip": "10.0.0.5",
+   "description": "Scan from internal vuln-scanner Nessus (10.0.0.5)",
+   "why": "known internal vulnerability scanner"
+  },
+  {
+   "alert_id": "A0065",
+   "time": "2026-11-18 11:46:00",
+   "rule": "Admin Login Off-Hours",
+   "severity": "medium",
+   "user": "admin",
+   "host": "SRV-FILE01",
+   "src_ip": "10.0.0.8",
+   "description": "Admin login via corporate VPN",
+   "why": "admin via corporate VPN"
+  },
+  {
+   "alert_id": "A0066",
+   "time": "2026-11-18 11:47:00",
+   "rule": "Unusual Geo Login",
+   "severity": "low",
+   "user": "omar",
+   "host": "",
+   "src_ip": "20.190.159.4",
+   "description": "Microsoft 365 sign-in",
+   "why": "Microsoft 365 sign-in"
+  },
+  {
+   "alert_id": "A0067",
+   "time": "2026-11-18 11:48:00",
+   "rule": "Large Outbound Transfer",
+   "severity": "medium",
+   "user": "",
+   "host": "WS-003",
+   "src_ip": "10.0.0.12",
+   "description": "Windows update download pattern",
+   "why": "benign update traffic"
+  },
+  {
+   "alert_id": "A0068",
+   "time": "2026-11-18 11:52:00",
+   "rule": "Large Outbound Transfer",
+   "severity": "medium",
+   "user": "",
+   "host": "WS-003",
+   "src_ip": "10.0.0.12",
+   "description": "Windows update download pattern",
+   "why": "benign update traffic"
+  },
+  {
+   "alert_id": "A0069",
+   "time": "2026-11-18 11:59:00",
+   "rule": "Port Scan Detected",
+   "severity": "medium",
+   "user": "",
+   "host": "SRV-WEB01",
+   "src_ip": "10.0.0.5",
+   "description": "Scan from internal vuln-scanner Nessus (10.0.0.5)",
+   "why": "known internal vulnerability scanner"
+  },
+  {
+   "alert_id": "A0070",
+   "time": "2026-11-18 12:01:00",
+   "rule": "Failed Login",
+   "severity": "low",
+   "user": "usman",
+   "host": "",
+   "src_ip": "",
+   "description": "1 failed login (typo)",
+   "why": "isolated failed login"
+  },
+  {
+   "alert_id": "A0071",
+   "time": "2026-11-18 12:01:00",
+   "rule": "Admin Login Off-Hours",
+   "severity": "medium",
+   "user": "admin",
+   "host": "SRV-FILE01",
+   "src_ip": "10.0.0.8",
+   "description": "Admin login via corporate VPN",
+   "why": "admin via corporate VPN"
+  },
+  {
+   "alert_id": "A0072",
+   "time": "2026-11-18 12:13:00",
+   "rule": "Failed Login",
+   "severity": "low",
+   "user": "hina",
+   "host": "",
+   "src_ip": "",
+   "description": "1 failed login (typo)",
+   "why": "isolated failed login"
+  },
+  {
+   "alert_id": "A0073",
+   "time": "2026-11-18 12:13:00",
+   "rule": "Large Outbound Transfer",
+   "severity": "medium",
+   "user": "",
+   "host": "WS-003",
+   "src_ip": "10.0.0.12",
+   "description": "Windows update download pattern",
+   "why": "benign update traffic"
+  },
+  {
+   "alert_id": "A0074",
+   "time": "2026-11-18 12:17:00",
+   "rule": "Failed Login",
+   "severity": "low",
+   "user": "svc_backup",
+   "host": "",
+   "src_ip": "",
+   "description": "1 failed login (typo)",
+   "why": "isolated failed login"
+  },
+  {
+   "alert_id": "A0075",
+   "time": "2026-11-18 12:23:00",
+   "rule": "Failed Login",
+   "severity": "low",
+   "user": "sara",
+   "host": "",
+   "src_ip": "",
+   "description": "1 failed login (typo)",
+   "why": "isolated failed login"
+  },
+  {
+   "alert_id": "A0076",
+   "time": "2026-11-18 12:26:00",
+   "rule": "Failed Login",
+   "severity": "low",
+   "user": "admin",
+   "host": "",
+   "src_ip": "",
+   "description": "1 failed login (typo)",
+   "why": "isolated failed login"
+  },
+  {
+   "alert_id": "A0077",
+   "time": "2026-11-18 12:31:00",
+   "rule": "Unusual Geo Login",
+   "severity": "low",
+   "user": "sara",
+   "host": "",
+   "src_ip": "20.190.159.4",
+   "description": "Microsoft 365 sign-in",
+   "why": "Microsoft 365 sign-in"
+  },
+  {
+   "alert_id": "A0078",
+   "time": "2026-11-18 12:37:00",
+   "rule": "Large Outbound Transfer",
+   "severity": "medium",
+   "user": "",
+   "host": "WS-003",
+   "src_ip": "10.0.0.12",
+   "description": "Windows update download pattern",
+   "why": "benign update traffic"
+  },
+  {
+   "alert_id": "A0079",
+   "time": "2026-11-18 12:38:00",
+   "rule": "Admin Login Off-Hours",
+   "severity": "medium",
+   "user": "admin",
+   "host": "SRV-FILE01",
+   "src_ip": "10.0.0.8",
+   "description": "Admin login via corporate VPN",
+   "why": "admin via corporate VPN"
+  },
+  {
+   "alert_id": "A0080",
+   "time": "2026-11-18 12:46:00",
+   "rule": "Port Scan Detected",
+   "severity": "medium",
+   "user": "",
+   "host": "SRV-WEB01",
+   "src_ip": "10.0.0.5",
+   "description": "Scan from internal vuln-scanner Nessus (10.0.0.5)",
+   "why": "known internal vulnerability scanner"
+  },
+  {
+   "alert_id": "A0081",
+   "time": "2026-11-18 12:46:00",
+   "rule": "Unusual Geo Login",
+   "severity": "low",
+   "user": "usman",
+   "host": "",
+   "src_ip": "20.190.159.4",
+   "description": "Microsoft 365 sign-in",
+   "why": "Microsoft 365 sign-in"
+  },
+  {
+   "alert_id": "A0082",
+   "time": "2026-11-18 12:50:00",
+   "rule": "Admin Login Off-Hours",
+   "severity": "medium",
+   "user": "admin",
+   "host": "SRV-FILE01",
+   "src_ip": "10.0.0.8",
+   "description": "Admin login via corporate VPN",
+   "why": "admin via corporate VPN"
+  },
+  {
+   "alert_id": "A0083",
+   "time": "2026-11-18 12:50:00",
+   "rule": "Failed Login",
+   "severity": "low",
+   "user": "svc_backup",
+   "host": "",
+   "src_ip": "",
+   "description": "1 failed login (typo)",
+   "why": "isolated failed login"
+  },
+  {
+   "alert_id": "A0084",
+   "time": "2026-11-18 12:59:00",
+   "rule": "Unusual Geo Login",
+   "severity": "low",
+   "user": "sara",
+   "host": "",
+   "src_ip": "20.190.159.4",
+   "description": "Microsoft 365 sign-in",
+   "why": "Microsoft 365 sign-in"
+  },
+  {
+   "alert_id": "A0085",
+   "time": "2026-11-18 13:00:00",
+   "rule": "Admin Login Off-Hours",
+   "severity": "medium",
+   "user": "admin",
+   "host": "SRV-FILE01",
+   "src_ip": "10.0.0.8",
+   "description": "Admin login via corporate VPN",
+   "why": "admin via corporate VPN"
+  },
+  {
+   "alert_id": "A0087",
+   "time": "2026-11-18 13:00:00",
+   "rule": "Failed Login",
+   "severity": "low",
+   "user": "sara",
+   "host": "",
+   "src_ip": "",
+   "description": "1 failed login (typo)",
+   "why": "isolated failed login"
+  },
+  {
+   "alert_id": "A0088",
+   "time": "2026-11-18 13:02:00",
+   "rule": "Port Scan Detected",
+   "severity": "medium",
+   "user": "",
+   "host": "SRV-WEB01",
+   "src_ip": "10.0.0.5",
+   "description": "Scan from internal vuln-scanner Nessus (10.0.0.5)",
+   "why": "known internal vulnerability scanner"
+  },
+  {
+   "alert_id": "A0090",
+   "time": "2026-11-18 13:04:00",
+   "rule": "Port Scan Detected",
+   "severity": "medium",
+   "user": "",
+   "host": "SRV-WEB01",
+   "src_ip": "10.0.0.5",
+   "description": "Scan from internal vuln-scanner Nessus (10.0.0.5)",
+   "why": "known internal vulnerability scanner"
+  },
+  {
+   "alert_id": "A0091",
+   "time": "2026-11-18 13:10:00",
+   "rule": "Failed Login",
+   "severity": "low",
+   "user": "dev_ahmed",
+   "host": "",
+   "src_ip": "",
+   "description": "1 failed login (typo)",
+   "why": "isolated failed login"
+  },
+  {
+   "alert_id": "A0092",
+   "time": "2026-11-18 13:16:00",
+   "rule": "Large Outbound Transfer",
+   "severity": "medium",
+   "user": "",
+   "host": "WS-003",
+   "src_ip": "10.0.0.12",
+   "description": "Windows update download pattern",
+   "why": "benign update traffic"
+  },
+  {
+   "alert_id": "A0093",
+   "time": "2026-11-18 13:19:00",
+   "rule": "Large Outbound Transfer",
+   "severity": "medium",
+   "user": "",
+   "host": "WS-003",
+   "src_ip": "10.0.0.12",
+   "description": "Windows update download pattern",
+   "why": "benign update traffic"
+  },
+  {
+   "alert_id": "A0094",
+   "time": "2026-11-18 13:19:00",
+   "rule": "Unusual Geo Login",
+   "severity": "low",
+   "user": "zara",
+   "host": "",
+   "src_ip": "20.190.159.4",
+   "description": "Microsoft 365 sign-in",
+   "why": "Microsoft 365 sign-in"
+  },
+  {
+   "alert_id": "A0096",
+   "time": "2026-11-18 13:24:00",
+   "rule": "Admin Login Off-Hours",
+   "severity": "medium",
+   "user": "admin",
+   "host": "SRV-FILE01",
+   "src_ip": "10.0.0.8",
+   "description": "Admin login via corporate VPN",
+   "why": "admin via corporate VPN"
+  },
+  {
+   "alert_id": "A0097",
+   "time": "2026-11-18 13:27:00",
+   "rule": "Large Outbound Transfer",
+   "severity": "medium",
+   "user": "",
+   "host": "WS-003",
+   "src_ip": "10.0.0.12",
+   "description": "Windows update download pattern",
+   "why": "benign update traffic"
+  },
+  {
+   "alert_id": "A0098",
+   "time": "2026-11-18 13:31:00",
+   "rule": "Port Scan Detected",
+   "severity": "medium",
+   "user": "",
+   "host": "SRV-WEB01",
+   "src_ip": "10.0.0.5",
+   "description": "Scan from internal vuln-scanner Nessus (10.0.0.5)",
+   "why": "known internal vulnerability scanner"
+  },
+  {
+   "alert_id": "A0099",
+   "time": "2026-11-18 13:33:00",
+   "rule": "Failed Login",
+   "severity": "low",
+   "user": "omar",
+   "host": "",
+   "src_ip": "",
+   "description": "1 failed login (typo)",
+   "why": "isolated failed login"
+  },
+  {
+   "alert_id": "A0100",
+   "time": "2026-11-18 13:47:00",
+   "rule": "Admin Login Off-Hours",
+   "severity": "medium",
+   "user": "admin",
+   "host": "SRV-FILE01",
+   "src_ip": "10.0.0.8",
+   "description": "Admin login via corporate VPN",
+   "why": "admin via corporate VPN"
+  },
+  {
+   "alert_id": "A0101",
+   "time": "2026-11-18 13:58:00",
+   "rule": "Failed Login",
+   "severity": "low",
+   "user": "ali",
+   "host": "",
+   "src_ip": "",
+   "description": "1 failed login (typo)",
+   "why": "isolated failed login"
+  },
+  {
+   "alert_id": "A0102",
+   "time": "2026-11-18 13:59:00",
+   "rule": "Large Outbound Transfer",
+   "severity": "medium",
+   "user": "",
+   "host": "WS-003",
+   "src_ip": "10.0.0.12",
+   "description": "Windows update download pattern",
+   "why": "benign update traffic"
+  },
+  {
+   "alert_id": "A0103",
+   "time": "2026-11-18 14:07:00",
+   "rule": "Port Scan Detected",
+   "severity": "medium",
+   "user": "",
+   "host": "SRV-WEB01",
+   "src_ip": "10.0.0.5",
+   "description": "Scan from internal vuln-scanner Nessus (10.0.0.5)",
+   "why": "known internal vulnerability scanner"
+  },
+  {
+   "alert_id": "A0104",
+   "time": "2026-11-18 14:10:00",
+   "rule": "Unusual Geo Login",
+   "severity": "low",
+   "user": "sara",
+   "host": "",
+   "src_ip": "20.190.159.4",
+   "description": "Microsoft 365 sign-in",
+   "why": "Microsoft 365 sign-in"
+  },
+  {
+   "alert_id": "A0105",
+   "time": "2026-11-18 14:12:00",
+   "rule": "Large Outbound Transfer",
+   "severity": "medium",
+   "user": "",
+   "host": "WS-003",
+   "src_ip": "10.0.0.12",
+   "description": "Windows update download pattern",
+   "why": "benign update traffic"
+  },
+  {
+   "alert_id": "A0106",
+   "time": "2026-11-18 14:17:00",
+   "rule": "Admin Login Off-Hours",
+   "severity": "medium",
+   "user": "admin",
+   "host": "SRV-FILE01",
+   "src_ip": "10.0.0.8",
+   "description": "Admin login via corporate VPN",
+   "why": "admin via corporate VPN"
+  },
+  {
+   "alert_id": "A0107",
+   "time": "2026-11-18 14:19:00",
+   "rule": "Unusual Geo Login",
+   "severity": "low",
+   "user": "bilal",
+   "host": "",
+   "src_ip": "20.190.159.4",
+   "description": "Microsoft 365 sign-in",
+   "why": "Microsoft 365 sign-in"
+  },
+  {
+   "alert_id": "A0108",
+   "time": "2026-11-18 14:21:00",
+   "rule": "Admin Login Off-Hours",
+   "severity": "medium",
+   "user": "admin",
+   "host": "SRV-FILE01",
+   "src_ip": "10.0.0.8",
+   "description": "Admin login via corporate VPN",
+   "why": "admin via corporate VPN"
+  },
+  {
+   "alert_id": "A0109",
+   "time": "2026-11-18 14:21:00",
+   "rule": "Unusual Geo Login",
+   "severity": "low",
+   "user": "bilal",
+   "host": "",
+   "src_ip": "20.190.159.4",
+   "description": "Microsoft 365 sign-in",
+   "why": "Microsoft 365 sign-in"
+  },
+  {
+   "alert_id": "A0110",
+   "time": "2026-11-18 14:22:00",
+   "rule": "Admin Login Off-Hours",
+   "severity": "medium",
+   "user": "admin",
+   "host": "SRV-FILE01",
+   "src_ip": "10.0.0.8",
+   "description": "Admin login via corporate VPN",
+   "why": "admin via corporate VPN"
+  },
+  {
+   "alert_id": "A0111",
+   "time": "2026-11-18 14:22:00",
+   "rule": "Port Scan Detected",
+   "severity": "medium",
+   "user": "",
+   "host": "SRV-WEB01",
+   "src_ip": "10.0.0.5",
+   "description": "Scan from internal vuln-scanner Nessus (10.0.0.5)",
+   "why": "known internal vulnerability scanner"
+  },
+  {
+   "alert_id": "A0112",
+   "time": "2026-11-18 14:29:00",
+   "rule": "Admin Login Off-Hours",
+   "severity": "medium",
+   "user": "admin",
+   "host": "SRV-FILE01",
+   "src_ip": "10.0.0.8",
+   "description": "Admin login via corporate VPN",
+   "why": "admin via corporate VPN"
+  },
+  {
+   "alert_id": "A0113",
+   "time": "2026-11-18 14:35:00",
+   "rule": "Admin Login Off-Hours",
+   "severity": "medium",
+   "user": "admin",
+   "host": "SRV-FILE01",
+   "src_ip": "10.0.0.8",
+   "description": "Admin login via corporate VPN",
+   "why": "admin via corporate VPN"
+  },
+  {
+   "alert_id": "A0114",
+   "time": "2026-11-18 14:38:00",
+   "rule": "Admin Login Off-Hours",
+   "severity": "medium",
+   "user": "admin",
+   "host": "SRV-FILE01",
+   "src_ip": "10.0.0.8",
+   "description": "Admin login via corporate VPN",
+   "why": "admin via corporate VPN"
+  },
+  {
+   "alert_id": "A0115",
+   "time": "2026-11-18 14:39:00",
+   "rule": "Unusual Geo Login",
+   "severity": "low",
+   "user": "admin",
+   "host": "",
+   "src_ip": "20.190.159.4",
+   "description": "Microsoft 365 sign-in",
+   "why": "Microsoft 365 sign-in"
+  },
+  {
+   "alert_id": "A0116",
+   "time": "2026-11-18 14:45:00",
+   "rule": "Failed Login",
+   "severity": "low",
+   "user": "ali",
+   "host": "",
+   "src_ip": "",
+   "description": "1 failed login (typo)",
+   "why": "isolated failed login"
+  },
+  {
+   "alert_id": "A0119",
+   "time": "2026-11-18 14:54:00",
+   "rule": "Failed Login",
+   "severity": "low",
+   "user": "ali",
+   "host": "",
+   "src_ip": "",
+   "description": "1 failed login (typo)",
+   "why": "isolated failed login"
+  },
+  {
+   "alert_id": "A0120",
+   "time": "2026-11-18 14:55:00",
+   "rule": "Unusual Geo Login",
+   "severity": "low",
+   "user": "zara",
+   "host": "",
+   "src_ip": "20.190.159.4",
+   "description": "Microsoft 365 sign-in",
+   "why": "Microsoft 365 sign-in"
+  },
+  {
+   "alert_id": "A0121",
+   "time": "2026-11-18 14:58:00",
+   "rule": "Admin Login Off-Hours",
+   "severity": "medium",
+   "user": "admin",
+   "host": "SRV-FILE01",
+   "src_ip": "10.0.0.8",
+   "description": "Admin login via corporate VPN",
+   "why": "admin via corporate VPN"
+  },
+  {
+   "alert_id": "A0122",
+   "time": "2026-11-18 15:04:00",
+   "rule": "Large Outbound Transfer",
+   "severity": "medium",
+   "user": "",
+   "host": "WS-003",
+   "src_ip": "10.0.0.12",
+   "description": "Windows update download pattern",
+   "why": "benign update traffic"
+  },
+  {
+   "alert_id": "A0123",
+   "time": "2026-11-18 15:07:00",
+   "rule": "Port Scan Detected",
+   "severity": "medium",
+   "user": "",
+   "host": "SRV-WEB01",
+   "src_ip": "10.0.0.5",
+   "description": "Scan from internal vuln-scanner Nessus (10.0.0.5)",
+   "why": "known internal vulnerability scanner"
+  },
+  {
+   "alert_id": "A0124",
+   "time": "2026-11-18 15:07:00",
+   "rule": "Port Scan Detected",
+   "severity": "medium",
+   "user": "",
+   "host": "SRV-WEB01",
+   "src_ip": "10.0.0.5",
+   "description": "Scan from internal vuln-scanner Nessus (10.0.0.5)",
+   "why": "known internal vulnerability scanner"
+  },
+  {
+   "alert_id": "A0125",
+   "time": "2026-11-18 15:10:00",
+   "rule": "Admin Login Off-Hours",
+   "severity": "medium",
+   "user": "admin",
+   "host": "SRV-FILE01",
+   "src_ip": "10.0.0.8",
+   "description": "Admin login via corporate VPN",
+   "why": "admin via corporate VPN"
+  },
+  {
+   "alert_id": "A0126",
+   "time": "2026-11-18 15:10:00",
+   "rule": "Admin Login Off-Hours",
+   "severity": "medium",
+   "user": "admin",
+   "host": "SRV-FILE01",
+   "src_ip": "10.0.0.8",
+   "description": "Admin login via corporate VPN",
+   "why": "admin via corporate VPN"
+  },
+  {
+   "alert_id": "A0127",
+   "time": "2026-11-18 15:11:00",
+   "rule": "Large Outbound Transfer",
+   "severity": "medium",
+   "user": "",
+   "host": "WS-003",
+   "src_ip": "10.0.0.12",
+   "description": "Windows update download pattern",
+   "why": "benign update traffic"
+  },
+  {
+   "alert_id": "A0128",
+   "time": "2026-11-18 15:20:00",
+   "rule": "Large Outbound Transfer",
+   "severity": "medium",
+   "user": "",
+   "host": "WS-003",
+   "src_ip": "10.0.0.12",
+   "description": "Windows update download pattern",
+   "why": "benign update traffic"
+  },
+  {
+   "alert_id": "A0129",
+   "time": "2026-11-18 15:24:00",
+   "rule": "Failed Login",
+   "severity": "low",
+   "user": "omar",
+   "host": "",
+   "src_ip": "",
+   "description": "1 failed login (typo)",
+   "why": "isolated failed login"
+  },
+  {
+   "alert_id": "A0130",
+   "time": "2026-11-18 15:33:00",
+   "rule": "Failed Login",
+   "severity": "low",
+   "user": "sara",
+   "host": "",
+   "src_ip": "",
+   "description": "1 failed login (typo)",
+   "why": "isolated failed login"
+  },
+  {
+   "alert_id": "A0131",
+   "time": "2026-11-18 15:37:00",
+   "rule": "Failed Login",
+   "severity": "low",
+   "user": "hina",
+   "host": "",
+   "src_ip": "",
+   "description": "1 failed login (typo)",
+   "why": "isolated failed login"
+  },
+  {
+   "alert_id": "A0132",
+   "time": "2026-11-18 15:37:00",
+   "rule": "Unusual Geo Login",
+   "severity": "low",
+   "user": "admin",
+   "host": "",
+   "src_ip": "20.190.159.4",
+   "description": "Microsoft 365 sign-in",
+   "why": "Microsoft 365 sign-in"
+  },
+  {
+   "alert_id": "A0133",
+   "time": "2026-11-18 15:39:00",
+   "rule": "Unusual Geo Login",
+   "severity": "low",
+   "user": "usman",
+   "host": "",
+   "src_ip": "20.190.159.4",
+   "description": "Microsoft 365 sign-in",
+   "why": "Microsoft 365 sign-in"
+  },
+  {
+   "alert_id": "A0134",
+   "time": "2026-11-18 15:40:00",
+   "rule": "Admin Login Off-Hours",
+   "severity": "medium",
+   "user": "admin",
+   "host": "SRV-FILE01",
+   "src_ip": "10.0.0.8",
+   "description": "Admin login via corporate VPN",
+   "why": "admin via corporate VPN"
+  },
+  {
+   "alert_id": "A0135",
+   "time": "2026-11-18 15:49:00",
+   "rule": "Failed Login",
+   "severity": "low",
+   "user": "admin",
+   "host": "",
+   "src_ip": "",
+   "description": "1 failed login (typo)",
+   "why": "isolated failed login"
+  },
+  {
+   "alert_id": "A0136",
+   "time": "2026-11-18 15:51:00",
+   "rule": "Failed Login",
+   "severity": "low",
+   "user": "bilal",
+   "host": "",
+   "src_ip": "",
+   "description": "1 failed login (typo)",
+   "why": "isolated failed login"
+  },
+  {
+   "alert_id": "A0137",
+   "time": "2026-11-18 15:51:00",
+   "rule": "Unusual Geo Login",
+   "severity": "low",
+   "user": "hina",
+   "host": "",
+   "src_ip": "20.190.159.4",
+   "description": "Microsoft 365 sign-in",
+   "why": "Microsoft 365 sign-in"
+  },
+  {
+   "alert_id": "A0138",
+   "time": "2026-11-18 15:55:00",
+   "rule": "Port Scan Detected",
+   "severity": "medium",
+   "user": "",
+   "host": "SRV-WEB01",
+   "src_ip": "10.0.0.5",
+   "description": "Scan from internal vuln-scanner Nessus (10.0.0.5)",
+   "why": "known internal vulnerability scanner"
+  },
+  {
+   "alert_id": "A0139",
+   "time": "2026-11-18 15:56:00",
+   "rule": "Failed Login",
+   "severity": "low",
+   "user": "admin",
+   "host": "",
+   "src_ip": "",
+   "description": "1 failed login (typo)",
+   "why": "isolated failed login"
+  },
+  {
+   "alert_id": "A0140",
+   "time": "2026-11-18 15:58:00",
+   "rule": "Port Scan Detected",
+   "severity": "medium",
+   "user": "",
+   "host": "SRV-WEB01",
+   "src_ip": "10.0.0.5",
+   "description": "Scan from internal vuln-scanner Nessus (10.0.0.5)",
+   "why": "known internal vulnerability scanner"
+  },
+  {
+   "alert_id": "A0141",
+   "time": "2026-11-18 16:04:00",
+   "rule": "Failed Login",
+   "severity": "low",
+   "user": "zara",
+   "host": "",
+   "src_ip": "",
+   "description": "1 failed login (typo)",
+   "why": "isolated failed login"
+  },
+  {
+   "alert_id": "A0142",
+   "time": "2026-11-18 16:06:00",
+   "rule": "Failed Login",
+   "severity": "low",
+   "user": "admin",
+   "host": "",
+   "src_ip": "",
+   "description": "1 failed login (typo)",
+   "why": "isolated failed login"
+  },
+  {
+   "alert_id": "A0143",
+   "time": "2026-11-18 16:06:00",
+   "rule": "Large Outbound Transfer",
+   "severity": "medium",
+   "user": "",
+   "host": "WS-003",
+   "src_ip": "10.0.0.12",
+   "description": "Windows update download pattern",
+   "why": "benign update traffic"
+  },
+  {
+   "alert_id": "A0144",
+   "time": "2026-11-18 16:13:00",
+   "rule": "Unusual Geo Login",
+   "severity": "low",
+   "user": "svc_backup",
+   "host": "",
+   "src_ip": "20.190.159.4",
+   "description": "Microsoft 365 sign-in",
+   "why": "Microsoft 365 sign-in"
+  },
+  {
+   "alert_id": "A0145",
+   "time": "2026-11-18 16:14:00",
+   "rule": "Admin Login Off-Hours",
+   "severity": "medium",
+   "user": "admin",
+   "host": "SRV-FILE01",
+   "src_ip": "10.0.0.8",
+   "description": "Admin login via corporate VPN",
+   "why": "admin via corporate VPN"
+  },
+  {
+   "alert_id": "A0147",
+   "time": "2026-11-18 16:22:00",
+   "rule": "Failed Login",
+   "severity": "low",
+   "user": "usman",
+   "host": "",
+   "src_ip": "",
+   "description": "1 failed login (typo)",
+   "why": "isolated failed login"
+  },
+  {
+   "alert_id": "A0148",
+   "time": "2026-11-18 16:27:00",
+   "rule": "Unusual Geo Login",
+   "severity": "low",
+   "user": "admin",
+   "host": "",
+   "src_ip": "20.190.159.4",
+   "description": "Microsoft 365 sign-in",
+   "why": "Microsoft 365 sign-in"
+  },
+  {
+   "alert_id": "A0149",
+   "time": "2026-11-18 16:27:00",
+   "rule": "Unusual Geo Login",
+   "severity": "low",
+   "user": "bilal",
+   "host": "",
+   "src_ip": "20.190.159.4",
+   "description": "Microsoft 365 sign-in",
+   "why": "Microsoft 365 sign-in"
+  },
+  {
+   "alert_id": "A0150",
+   "time": "2026-11-18 16:44:00",
+   "rule": "Failed Login",
+   "severity": "low",
+   "user": "omar",
+   "host": "",
+   "src_ip": "",
+   "description": "1 failed login (typo)",
+   "why": "isolated failed login"
+  },
+  {
+   "alert_id": "A0151",
+   "time": "2026-11-18 16:50:00",
+   "rule": "Failed Login",
+   "severity": "low",
+   "user": "omar",
+   "host": "",
+   "src_ip": "",
+   "description": "1 failed login (typo)",
+   "why": "isolated failed login"
+  },
+  {
+   "alert_id": "A0152",
+   "time": "2026-11-18 16:58:00",
+   "rule": "Failed Login",
+   "severity": "low",
+   "user": "sara",
+   "host": "",
+   "src_ip": "",
+   "description": "1 failed login (typo)",
+   "why": "isolated failed login"
+  },
+  {
+   "alert_id": "A0153",
+   "time": "2026-11-18 17:11:00",
+   "rule": "Port Scan Detected",
+   "severity": "medium",
+   "user": "",
+   "host": "SRV-WEB01",
+   "src_ip": "10.0.0.5",
+   "description": "Scan from internal vuln-scanner Nessus (10.0.0.5)",
+   "why": "known internal vulnerability scanner"
+  },
+  {
+   "alert_id": "A0154",
+   "time": "2026-11-18 17:14:00",
+   "rule": "Large Outbound Transfer",
+   "severity": "medium",
+   "user": "",
+   "host": "WS-003",
+   "src_ip": "10.0.0.12",
+   "description": "Windows update download pattern",
+   "why": "benign update traffic"
+  },
+  {
+   "alert_id": "A0155",
+   "time": "2026-11-18 17:23:00",
+   "rule": "Failed Login",
+   "severity": "low",
+   "user": "svc_backup",
+   "host": "",
+   "src_ip": "",
+   "description": "1 failed login (typo)",
+   "why": "isolated failed login"
+  },
+  {
+   "alert_id": "A0156",
+   "time": "2026-11-18 17:23:00",
+   "rule": "Admin Login Off-Hours",
+   "severity": "medium",
+   "user": "admin",
+   "host": "SRV-FILE01",
+   "src_ip": "10.0.0.8",
+   "description": "Admin login via corporate VPN",
+   "why": "admin via corporate VPN"
+  },
+  {
+   "alert_id": "A0157",
+   "time": "2026-11-18 17:24:00",
+   "rule": "Failed Login",
+   "severity": "low",
+   "user": "omar",
+   "host": "",
+   "src_ip": "",
+   "description": "1 failed login (typo)",
+   "why": "isolated failed login"
+  },
+  {
+   "alert_id": "A0158",
+   "time": "2026-11-18 17:52:00",
+   "rule": "Failed Login",
+   "severity": "low",
+   "user": "zara",
+   "host": "",
+   "src_ip": "",
+   "description": "1 failed login (typo)",
+   "why": "isolated failed login"
+  },
+  {
+   "alert_id": "A0159",
+   "time": "2026-11-18 17:56:00",
+   "rule": "Failed Login",
+   "severity": "low",
+   "user": "omar",
+   "host": "",
+   "src_ip": "",
+   "description": "1 failed login (typo)",
+   "why": "isolated failed login"
+  },
+  {
+   "alert_id": "A0160",
+   "time": "2026-11-18 17:57:00",
+   "rule": "Failed Login",
+   "severity": "low",
+   "user": "sara",
+   "host": "",
+   "src_ip": "",
+   "description": "1 failed login (typo)",
+   "why": "isolated failed login"
+  }
+ ]
+}
